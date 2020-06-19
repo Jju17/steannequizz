@@ -37,6 +37,7 @@ class App extends Component {
     ) {
       this.tableCount();
     }
+    window.scrollTo(0, 0);
   }
 
   tableCount() {
