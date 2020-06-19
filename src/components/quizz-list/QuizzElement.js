@@ -33,8 +33,8 @@ export default class QuizzElement extends Component {
               e.preventDefault();
             }}
             onClick={(e) => {
-              e.preventDefault();
               this.props.onClick(a);
+              e.preventDefault();
             }}
           >
             {this.props.quizz.a[a]}
