@@ -29,7 +29,11 @@ export default class QuizzElement extends Component {
             key={a}
             type="button"
             className="btn btn-light btn-lg btn-block"
-            onClick={() => {
+            onMouseDown={(e) => {
+              e.preventDefault();
+            }}
+            onClick={(e) => {
+              e.preventDefault();
               this.props.onClick(a);
             }}
           >
