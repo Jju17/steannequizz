@@ -12,8 +12,8 @@ class App extends Component {
       selectedQ: 0,
       loaded: false,
       history: [],
-      name: dataAnswer[3].name,
-      desc: dataAnswer[3].desc,
+      name: "",
+      desc: "",
     };
   }
 
@@ -29,13 +29,52 @@ class App extends Component {
     // console.log("quizz lenght", this.state.quizz.length);
   };
 
+  componentDidUpdate() {
+    if (
+      this.state.quizz !== null &&
+      this.state.selectedQ === this.state.quizz.length &&
+      this.state.name === ""
+    ) {
+      this.tableCount();
+    }
+  }
+
+  tableCount() {
+    var count = new Map();
+
+    this.state.history.forEach((e, i) => {
+      if (count.has(e)) {
+        count.set(e, count.get(e) + 1);
+      } else {
+        count.set(e, 1);
+      }
+    });
+
+    console.log("count", count);
+    console.log(
+      "highest value",
+      [...count.entries()].reduce((a, e) => (e[1] > a[1] ? e : a))[0]
+    );
+
+    this.setState({
+      name:
+        dataAnswer[
+          [...count.entries()].reduce((a, e) => (e[1] > a[1] ? e : a))[0]
+        ].name,
+      desc:
+        dataAnswer[
+          [...count.entries()].reduce((a, e) => (e[1] > a[1] ? e : a))[0]
+        ].desc,
+    });
+  }
+
   componentDidMount() {
     setTimeout(() => {
       this.setState({
         quizz: dataQuizz,
         loaded: true,
       });
-    }, 0);
+    }, 200);
   }
 
   render() {
