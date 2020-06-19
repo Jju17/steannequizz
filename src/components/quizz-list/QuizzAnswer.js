@@ -8,6 +8,15 @@ export default class QuizzElement extends Component {
           Félicitations! Tu es le {this.props.name} de Ste Anne!
         </h1>
         <p className="lead text-muted">{this.props.desc}</p>
+        <button
+          onClick={() => {
+            this.props.onClick();
+          }}
+          type="button"
+          className="btn btn-light btn-lg"
+        >
+          Rejouer
+        </button>
       </div>
     );
   }

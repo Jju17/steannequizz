@@ -50,12 +50,6 @@ class App extends Component {
       }
     });
 
-    console.log("count", count);
-    console.log(
-      "highest value",
-      [...count.entries()].reduce((a, e) => (e[1] > a[1] ? e : a))[0]
-    );
-
     this.setState({
       name:
         dataAnswer[
@@ -74,7 +68,11 @@ class App extends Component {
         quizz: dataQuizz,
         loaded: true,
       });
-    }, 200);
+    }, 100);
+  }
+
+  refreshPage() {
+    window.location.reload(false);
   }
 
   render() {
@@ -89,7 +87,11 @@ class App extends Component {
                 onClick={this.updateQ}
               />
             ) : (
-              <QuizzAnswer name={this.state.name} desc={this.state.desc} />
+              <QuizzAnswer
+                name={this.state.name}
+                desc={this.state.desc}
+                onClick={this.refreshPage}
+              />
             )}
           </div>
         ) : (
